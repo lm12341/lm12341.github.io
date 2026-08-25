@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lucas Memmert</title>
+<meta name="description" content="Dr. Lucas Memmert — postdoctoral researcher on human-AI collaboration and generative AI at the Human-centered Information Systems Engineering (HISE) group, University of Zurich (UZH).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper: #FAFAF8;
+    --ink: #1B1D22;
+    --ink-muted: #5B5E66;
+    --accent: #1B3A8C;
+    --accent-soft: #E8ECF6;
+    --rule: #D8D8D4;
+    --dot: #D8D8D4;
+    --font-display: 'Archivo Expanded', 'Arial Narrow', Arial, sans-serif;
+    --font-body: 'Source Serif 4', Georgia, serif;
+    --font-mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+    --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14171C;
+      --ink: #ECEDEF;
+      --ink-muted: #9EA2AC;
+      --accent: #7C97E8;
+      --accent-soft: #1E2740;
+      --rule: #2B2E36;
+      --dot: #2B2E36;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-ui);
+    line-height: 1.55;
+  }
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  .page { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+
+  .hero {
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding: 1.8rem 0 1.6rem;
+    margin-bottom: 2.5rem;
+  }
+  .masthead { display: flex; align-items: flex-start; gap: 1.85rem; }
+  .portrait { width: 128px; height: 128px; border-radius: 4px; object-fit: cover; flex: none; border: 1px solid var(--rule); }
+  .masthead-text { min-width: 0; padding-top: 0.2rem; }
+  .hero-links { margin: 1.5rem 0 0; }
+  @media (max-width: 560px) {
+    .masthead { flex-direction: column; align-items: flex-start; gap: 1.1rem; }
+    .masthead-text { padding-top: 0; }
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(2.2rem, 5.5vw, 3.2rem);
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+  .subtitle { font-size: 1.05rem; color: var(--ink-muted); margin: 0; }
+  .linkrow { font-family: var(--font-mono); font-size: 0.82rem; display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; color: var(--ink-muted); }
+  .linkrow a { text-decoration: none; color: var(--accent); }
+  .linkrow a:hover { text-decoration: underline; }
+
+  .standfirst {
+    margin: 1.7rem 0 0;
+    padding-left: 1.4rem;
+    border-left: 3px solid var(--accent);
+    font-family: var(--font-body);
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+    line-height: 1.55;
+    color: var(--ink);
+  }
+
+  .collab-callout { border: 1px solid var(--accent); background: var(--accent-soft); padding: 1.6rem 1.85rem; margin: 0 0 3rem; }
+  .collab-callout .prose { max-width: none; margin: 0; }
+  .collab-callout a { color: var(--accent); font-weight: 600; }
+  .collab-callout a:hover { text-decoration: underline; }
+  .collab-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.1rem 0 1.25rem; }
+  .collab-card { border: 1px solid var(--rule); background: var(--paper); padding: 1rem 1.15rem; }
+  .collab-card h3 {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin: 0 0 0.45rem;
+    color: var(--ink);
+  }
+  .collab-card p { font-family: var(--font-body); font-size: 0.92rem; line-height: 1.5; color: var(--ink-muted); margin: 0; }
+  @media (max-width: 760px) { .collab-cards { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .collab-cards { grid-template-columns: 1fr; } }
+
+  .cv-grid { display: grid; grid-template-columns: 96px 1fr; column-gap: 2rem; }
+  .rail {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+    background-image: radial-gradient(var(--dot) 1.5px, transparent 1.5px);
+    background-size: 14px 14px;
+    padding: 0.75rem 0 0.75rem 0.4rem;
+  }
+  .rail ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+  .rail a {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-muted);
+  }
+  .rail a:hover, .rail a:focus-visible { color: var(--accent); }
+  @media (max-width: 720px) {
+    .cv-grid { grid-template-columns: 1fr; }
+    .rail { display: none; }
+  }
+
+  .cv-body section { margin-bottom: 3.5rem; scroll-margin-top: 1.5rem; }
+  h2.eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 1.1rem;
+  }
+  h2.eyebrow::before { content: ""; width: 1.6rem; height: 2px; background: var(--accent); display: inline-block; flex: none; }
+
+  .pub-card { border: 1px solid var(--rule); padding: 1.1rem 1.25rem 1.25rem; margin-bottom: 1rem; transition: border-color 0.15s ease, transform 0.15s ease; }
+  .pub-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .pub-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; font-family: var(--font-mono); font-size: 0.76rem; margin-bottom: 0.7rem; }
+  .pub-tag { background: var(--accent-soft); color: var(--accent); padding: 0.15rem 0.5rem; }
+  .pub-cite { color: var(--ink-muted); text-decoration: none; }
+  .pub-cite:hover { color: var(--accent); }
+  .pub-title { font-family: var(--font-body); font-size: 1.08rem; font-weight: 600; line-height: 1.4; margin: 0 0 0.4rem; }
+  .pub-title a { text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .pub-title a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+  .pub-authors { font-size: 0.9rem; color: var(--ink-muted); margin: 0; }
+  .pub-authors strong { color: var(--ink); font-weight: 700; }
+  .award { display: inline-block; margin-top: 0.6rem; font-size: 0.74rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent); }
+
+  ul.plain { list-style: none; padding: 0; margin: 0; }
+  ul.plain li { padding: 0.55rem 0; border-bottom: 1px solid var(--rule); font-size: 0.98rem; }
+  ul.plain li:last-child { border-bottom: none; }
+  .group-label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-muted); margin: 1.1rem 0 0.4rem; }
+
+  .prose { font-family: var(--font-body); font-size: 1rem; line-height: 1.65; max-width: 68ch; margin: 0 0 1rem; }
+  .prose:last-child { margin-bottom: 0; }
+  .prose em { font-style: italic; }
+
+  footer.site {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    color: var(--ink-muted);
+    font-size: 0.85rem;
+    font-family: var(--font-ui);
+  }
+  footer.site p { margin: 0 0 0.5rem; }
+  footer.site p:last-child { margin-bottom: 0; }
+  footer.site a { color: var(--accent); text-decoration: none; }
+  footer.site a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="hero">
+  <header class="masthead">
+    <img class="portrait" src="/img/lucas-memmert.jpg" alt="Portrait of Lucas Memmert" width="128" height="128">
+    <div class="masthead-text">
+      <h1>Dr. Lucas Memmert</h1>
+      <p class="subtitle">Postdoctoral Researcher, University of Zurich (UZH) &middot; Human-AI Collaboration</p>
+    </div>
+  </header>
+
+  <blockquote class="standfirst">I seek to understand and design how generative and agentic AI systems change how we work &mdash; bridging academia and industry to put this new technology to its best use.</blockquote>
+
+  <p class="linkrow hero-links">
+    <a href="https://www.ifi.uzh.ch/en/hise/people/memmert.html">UZH Profile</a>
+    <a href="https://scholar.google.com/citations?user=-zFtcAgAAAAJ&amp;hl=en">Google Scholar</a>
+    <a href="https://www.researchgate.net/profile/Lucas-Memmert">ResearchGate</a>
+    <a href="https://orcid.org/0000-0002-5452-1843">ORCID</a>
+    <a href="https://www.linkedin.com/in/lucas-memmert-76787590/">LinkedIn</a>
+    <a href="mailto:info@lucasmemmert.com">Email</a>
+  </p>
+</div>
+
+<section class="collab-callout" aria-labelledby="collab-heading">
+  <h2 class="eyebrow" id="collab-heading">Looking to Collaborate</h2>
+  <div class="collab-cards">
+    <div class="collab-card">
+      <h3>Physiological AI Engagement</h3>
+      <p>How people physiologically engage with AI solutions &mdash; EEG, eye tracking, heart rate, skin conductance.</p>
+    </div>
+    <div class="collab-card">
+      <h3>Agentic Operating Models</h3>
+      <p>Multi-agent use in knowledge work, and agents as dynamic company infrastructure reshaping how organizations operate.</p>
+    </div>
+    <div class="collab-card">
+      <h3>GenAI &amp; Creativity</h3>
+      <p>Generative AI&rsquo;s role in creative and ideation work, building on my dissertation and brainstorming research.</p>
+    </div>
+  </div>
+  <p class="prose">Looking for <strong>researchers</strong> interested in co-authoring papers or joint funding applications, and <strong>professionals and organizations</strong> open to case studies or occasional strategic input on AI adoption, informed by my consulting and research background. <a href="mailto:info@lucasmemmert.com">Get in touch</a>.</p>
+</section>
+
+<div class="cv-grid">
+  <nav class="rail" aria-label="Section index">
+    <ul>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#dissertation">Dissertation</a></li>
+      <li><a href="#talks">Talks</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#supervision">Supervision</a></li>
+      <li><a href="#service">Service</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="cv-body">
+
+    <section id="publications">
+      <h2 class="eyebrow">Publications</h2>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2026 &middot; Electronic Markets</span>
+    <a class="pub-cite" href="https://doi.org/10.1007/s12525-026-00915-x">doi &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://doi.org/10.1007/s12525-026-00915-x">Episodic Oversight in Generative AI Workflows: A Nine-Step Protocol for Preserving Human Agency (OP-9)</a></p>
+  <p class="pub-authors">Taş, E., <strong>Memmert, L.</strong>, and Bittner, E. &middot; (36:1), p. 58</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2026 &middot; DESRIST</span>
+    <a class="pub-cite" href="https://doi.org/10.1007/978-3-032-28313-9_7">doi &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://doi.org/10.1007/978-3-032-28313-9_7">Designing Mobile Applications for Spontaneous Volunteers: Insights from a Design Science Research Approach</a></p>
+  <p class="pub-authors">Milutzki, E., <strong>Memmert, L.</strong>, Borchers, M., Zeybek, R., Magdych, V., and Semmann, M. &middot; Münster, Germany, 08.06.2026&ndash;10.06.2026</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2026 &middot; NeuroIS Retreat 2026</span>
+    
+  </div>
+  <p class="pub-title">'I Don't Really Care': How Generative AI Use Shapes Affective Reactions to Feedback on Work Outcomes</p>
+  <p class="pub-authors"><strong>Memmert, L.</strong>, and Bittner, E. &middot; Vienna, Austria, 02.06.2026&ndash;04.06.2026</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2025 &middot; Business &amp; Information Systems Engineering</span>
+    <a class="pub-cite" href="https://doi.org/10.1007/s12599-025-00974-y">doi &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://doi.org/10.1007/s12599-025-00974-y">Brainstorming with a Generative Language Model: Effect of Exposure to AI Ideas on Brainstorming Performance and Cognitive Load</a></p>
+  <p class="pub-authors"><strong>Memmert, L.</strong>, Cvetkovic, I., Tavanapour, N., and Bittner, E.</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2025 &middot; Business &amp; Information Systems Engineering</span>
+    <a class="pub-cite" href="https://doi.org/10.1007/s12599-025-00960-4">doi &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://doi.org/10.1007/s12599-025-00960-4">From Effort Reduction to Effort Management: An Expectancy Theory Perspective on Professionals' Work Practices with Generative AI</a></p>
+  <p class="pub-authors"><strong>Memmert, L.</strong>, Soroko, D., and Bittner, E. &middot; (67:5), pp. 615&ndash;635</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2025 &middot; HICSS</span>
+    <a class="pub-cite" href="https://scholarspace.manoa.hawaii.edu/items/f8659bbb-1974-4f11-914a-5b63a3e7deae">cite &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://scholarspace.manoa.hawaii.edu/items/f8659bbb-1974-4f11-914a-5b63a3e7deae">Solving Coding Challenges Jointly with a Large Language Model: Understanding Student Journeys Through Bloom's Taxonomy</a></p>
+  <p class="pub-authors"><strong>Memmert, L.</strong>, Borchers, M., Plückhahn, J., and Bittner, E. &middot; Waikoloa Village, HI, USA, 7.01.2025&ndash;10.01.2025</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2025 &middot; ICIS</span>
+    <a class="pub-cite" href="https://aisel.aisnet.org/icis2025/user_behav/user_behav/22/">cite &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://aisel.aisnet.org/icis2025/user_behav/user_behav/22/">AI-Assisted Task Performance: The Moderating Role of Assistance Modality on Motivational Dynamics</a></p>
+  <p class="pub-authors">de Vreede, T., and <strong>Memmert, L.</strong> &middot; Nashville, TN, USA, 14.12.2025&ndash;17.12.2025</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2024 &middot; ICIS</span>
+    <a class="pub-cite" href="https://aisel.aisnet.org/icis2024/aiinbus/aiinbus/7/">cite &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://aisel.aisnet.org/icis2024/aiinbus/aiinbus/7/">Brainstorming with a Generative Language Model: The Role of Creative Ability and Tool-Support for Brainstorming Performance</a></p>
+  <p class="pub-authors"><strong>Memmert, L.</strong>, Mies, J., and Bittner, E. &middot; Bangkok, Thailand, 15.12.2024&ndash;18.12.2024</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2024 &middot; ECIS</span>
+    <a class="pub-cite" href="https://aisel.aisnet.org/ecis2024/track06_humanaicollab/track06_humanaicollab/1/">cite &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://aisel.aisnet.org/ecis2024/track06_humanaicollab/track06_humanaicollab/1/">Brainstorming with a Generative Language Model: Understanding Performance Through Brainstorming Group Effects</a></p>
+  <p class="pub-authors"><strong>Memmert, L.</strong> &middot; Paphos, Cyprus, pp. 2135&ndash;2142</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2024 &middot; HICSS</span>
+    <a class="pub-cite" href="https://aisel.aisnet.org/hicss-57/cl/machines_as_teammates/6/">cite &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://aisel.aisnet.org/hicss-57/cl/machines_as_teammates/6/">Human-AI Collaboration for Brainstorming: Effect of the Presence of AI Ideas on Breadth of Exploration</a></p>
+  <p class="pub-authors"><strong>Memmert, L.</strong>, and Bittner, E. &middot; Honolulu, HI, USA, 03.01.2024&ndash;06.01.2024, pp. 421&ndash;430</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2024 &middot; HICSS</span>
+    <a class="pub-cite" href="https://aisel.aisnet.org/hicss-57/st/research_and_education/5/">cite &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://aisel.aisnet.org/hicss-57/st/research_and_education/5/">The More Is Not the Merrier: Effects of Prompt Engineering on the Quality of Ideas Generated By GPT-3</a></p>
+  <p class="pub-authors"><strong>Memmert, L.</strong>, Cvetkovic, I., and Bittner, E. &middot; Honolulu, HI, USA, 03.01.2024&ndash;06.01.2024, pp. 7520&ndash;7529</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2024 &middot; HICSS</span>
+    <a class="pub-cite" href="https://aisel.aisnet.org/hicss-57/da/service_science/4/">cite &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://aisel.aisnet.org/hicss-57/da/service_science/4/">The Prompt-a-thon: Designing a Format for Value Co-Creation with Generative AI for Research and Practice</a></p>
+  <p class="pub-authors">Kučević, E., von Brackel-Schmidt, C., Lewandowski, T., Leible, S., <strong>Memmert, L.</strong>, and Böhmann, T. &middot; Honolulu, HI, USA, 03.01.2024&ndash;06.01.2024, pp. 1586&ndash;1595</p>
+  <span class="award">Nominated for Best Paper Award</span>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2023 &middot; ICIS</span>
+    <a class="pub-cite" href="https://aisel.aisnet.org/icis2023/generalis/generalis/1/">cite &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://aisel.aisnet.org/icis2023/generalis/generalis/1/">A User-centric Taxonomy for Conversational Generative Language Models</a></p>
+  <p class="pub-authors">von Brackel-Schmidt, C., Kucevic, E., <strong>Memmert, L.</strong>, Tavanapour, N., Cvetkovic, I., Bittner, E., and Böhmann, T.</p>
+  <span class="award">Nominated for Best Paper Award</span>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2023 &middot; Journal of Information Systems Education</span>
+    <a class="pub-cite" href="https://aisel.aisnet.org/jise/vol34/iss3/3/">cite &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://aisel.aisnet.org/jise/vol34/iss3/3/">Learning by Doing: Educators' Perspective on an Illustrative Tool for AI-Generated Scaffolding for Students in Conceptualizing Design Science Research Studies</a></p>
+  <p class="pub-authors"><strong>Memmert, L.</strong>, Tavanapour, N., and Bittner, E. &middot; (34:3), pp. 279&ndash;292</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2023 &middot; ECIS</span>
+    <a class="pub-cite" href="https://aisel.aisnet.org/ecis2023_rp/429/">cite &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://aisel.aisnet.org/ecis2023_rp/429/">Towards Human-AI Collaboration in Brainstorming: Empirical Insights into the Perception of Working with a Generative AI</a></p>
+  <p class="pub-authors"><strong>Memmert, L.</strong>, and Tavanapour, N. &middot; Kristiansand, Norway, 11.06.2023&ndash;16.06.2023</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2023 &middot; ECIS</span>
+    <a class="pub-cite" href="https://aisel.aisnet.org/ecis2023_rp/405/">cite &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://aisel.aisnet.org/ecis2023_rp/405/">Human-AI Collaboration in Conceptualizing Design Science Research Studies: Perceived Helpfulness of Generative Language Model's Suggestions</a></p>
+  <p class="pub-authors"><strong>Memmert, L.</strong>, Cvetkovic, I., and Bittner, E. &middot; Kristiansand, Norway, 11.06.2023&ndash;16.06.2023</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2022 &middot; HICSS</span>
+    <a class="pub-cite" href="https://doi.org/10.24251/HICSS.2022.046">doi &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://doi.org/10.24251/HICSS.2022.046">Complex Problem Solving through Human-AI Collaboration: Literature Review on Research Contexts</a></p>
+  <p class="pub-authors"><strong>Memmert, L.</strong>, and Bittner, E. &middot; Virtual Event/Maui, HI, USA, 04.01.2022&ndash;07.01.2022, pp. 378&ndash;387</p>
+</div>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2021 &middot; Informatik Spektrum</span>
+    <a class="pub-cite" href="https://doi.org/10.1007/s00287-021-01352-0">doi &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://doi.org/10.1007/s00287-021-01352-0">Hybride Wissensarbeit</a></p>
+  <p class="pub-authors">Oeste-Reiß, S., Bittner, E., Cvetkovic, I., Günther, A., Leimeister, J., <strong>Memmert, L.</strong>, Ott, A., Sick, B., and Wolter, K. &middot; (44:3), pp. 148&ndash;152</p>
+</div>
+    </section>
+
+    <section id="dissertation">
+      <h2 class="eyebrow">Dissertation</h2>
+<div class="pub-card">
+  <div class="pub-meta">
+    <span class="pub-tag">2025 &middot; PhD Dissertation</span>
+    <a class="pub-cite" href="https://ediss.sub.uni-hamburg.de/handle/ediss/12279">record &#8599;</a>
+  </div>
+  <p class="pub-title"><a href="https://ediss.sub.uni-hamburg.de/handle/ediss/12279">How Generative Language Models Shape Human Problem Solving: A Phenomenon-centered, Sociotechnical Perspective</a></p>
+  <p class="pub-authors"><strong>Memmert, L.</strong> &middot; Staats- und Universitätsbibliothek Hamburg Carl von Ossietzky, Universität Hamburg</p>
+</div>
+    </section>
+
+    <section id="talks">
+      <h2 class="eyebrow">Talks</h2>
+      <ul class="plain">
+        <li>Panel discussion on AI and creativity at the <strong>&ldquo;Future Playgrounds 2025&rdquo;</strong> festival by Peter Schmidt Group</li>
+        <li>Podcast episode with the <strong>Digital and Data Literacy in Teaching Lab</strong> on our EU AI Act-related seminar (Jan 2025)</li>
+        <li>Paper presentation at <strong>45th International Conference on Information Systems (ICIS)</strong>, Bangkok, Thailand. 15.12.2024&ndash;18.12.2024.</li>
+        <li>Paper presentation at <strong>32nd European Conference on Information Systems (ECIS)</strong>, Paphos, Cyprus.</li>
+        <li>Paper presentations at the <strong>57th Hawaii International Conference on System Sciences</strong>, Honolulu, HI, USA. 03.01.2024&ndash;06.01.2024.</li>
+        <li>Paper presentations at the <strong>31st European Conference on Information Systems (ECIS)</strong>, Kristiansand, Norway. 11.06.2023&ndash;16.06.2023.</li>
+        <li>Paper presentation at the <strong>55th Hawaii International Conference on System Sciences (HICSS)</strong>.</li>
+      </ul>
+    </section>
+
+    <section id="teaching">
+      <h2 class="eyebrow">Teaching</h2>
+      <p class="group-label">University of Zurich</p>
+      <ul class="plain">
+        <li><strong>Information Management</strong> (Lecture with integrated exercise) &middot; Autumn Semester 2026</li>
+        <li><strong>Collaboration Engineering</strong> (Lecture with integrated exercise) &middot; Spring Semester 2026</li>
+        <li><strong>Design Science Research</strong> (Seminar) &middot; Autumn Semester 2026</li>
+        <li><strong>Human-AI Collaboration</strong> (Lecture) &middot; Autumn Semester 2026</li>
+      </ul>
+      <p class="group-label">University of Hamburg</p>
+      <ul class="plain">
+        <li><strong>BreAkIng Bad &ndash; Hacking the EU AI Act</strong> (Seminar) &middot; Winter Semester 2023/24</li>
+        <li>Guest lecture in <strong>Collaboration Engineering (CE) &amp; CSCW and Social Computing</strong></li>
+        <li>Guest lecture in <strong>Data-driven Solutions for the Smart City Hamburg</strong></li>
+        <li>Guest lecture in <strong>Knowledge Work and Knowledge Management</strong></li>
+      </ul>
+    </section>
+
+    <section id="supervision">
+      <h2 class="eyebrow">Supervision</h2>
+      <p class="prose">Supervisor and/or reviewer for 25 bachelor and master theses, with particular focus on generative AI in creativity and design science research (DSR). Two of the theses I supervised have received awards:</p>
+      <ul class="plain">
+        <li>Bachelor&rsquo;s thesis <a href="https://www.inf.uni-hamburg.de/en/inst/ab/wists/news/2025-08-fujitsu-next-award-baum.html">&ldquo;Collaborative Creation of Information Texts Together with an Artificial Intelligence&rdquo;</a> won the <strong>Fujitsu Next &ldquo;IT INNOVATION&rdquo; Award 2024</strong></li>
+        <li>Bachelor&rsquo;s thesis <a href="https://www.inf.uni-hamburg.de/inst/ab/wists/news/current/bachelor-award.html">&ldquo;Development of a Framework for Hybrid Collaboration of Journalists and Generative AI Systems&rdquo;</a> won second place for the <strong>Wirtschaftsinformatik Bachelor Awards</strong> by &ldquo;Die Wirtschaftsinformatik &ndash; Verein zur F&ouml;rderung der Wirtschaftsinformatik (Die WI) e.V.&rdquo;</li>
+      </ul>
+    </section>
+
+    <section id="service">
+      <h2 class="eyebrow">Service to the Research Community</h2>
+      <p class="prose">Served as a reviewer for over 15 manuscripts for both journals and conferences including <em>Journal of Information Technology (JIT)</em>, <em>Business &amp; Information Systems Engineering (BISE)</em>, <em>Group Decision and Negotiation</em>, <em>Communications of the Association for Information Systems (CAIS)</em>, <em>Journal of Information Systems Education (JISE)</em>, <em>International Conference on Information Systems (ICIS)</em>, <em>European Conference on Information Systems (ECIS)</em>, <em>Internationale Tagung Wirtschaftsinformatik (WI)</em>, <em>Pacific Asia Conference on Information Systems (PACIS)</em>, and <em>Hawaii International Conference on System Sciences (HICSS)</em>.</p>
+      <p class="prose">Invited to serve as Associate Editor (AE) for two upcoming conferences.</p>
+    </section>
+
+    <section id="projects">
+      <h2 class="eyebrow">Projects</h2>
+      <ul class="plain">
+        <li><a href="https://doi.org/10.34657/29970"><strong>Hybridisierung von K&uuml;nstlicher und menschlicher Intelligenz in der Wissensarbeit</strong></a> (HyMeKI, BMBF-Nachwuchsgruppe), with Eva A. C. Bittner, Sarah Oeste-Rei&szlig;, and Izabel Cvetkovic. Hannover: Technische Informationsbibliothek, 2025.</li>
+      </ul>
+    </section>
+
+    <section id="about">
+      <h2 class="eyebrow">About Me</h2>
+      <p class="prose">I&rsquo;m passionate about how technology transforms the way we work and create value. After studying Information Systems &mdash; B.Sc. Wirtschaftsinformatik at Wismar University of Applied Sciences, M.Sc. IT Management &amp; Consulting at the University of Hamburg, with a semester abroad at the University of St Andrews &mdash; I gained hands-on experience in software development, process optimization, and enterprise architecture.</p>
+      <p class="prose">I then spent four years at Deloitte, most recently as a Senior Consultant, where I helped organizations leverage data, analytics, and AI&mdash;shaping strategies, building agile teams, and establishing AI governance. I worked with medium to large organizations across industries such as telecommunications, chemicals, consumer goods, and industrial goods, both in Germany and abroad.</p>
+      <p class="prose">I completed my PhD in 2026, focusing on how individuals can benefit from generative AI and how it reshapes human behavior. From Jan&ndash;Mar 2025, I expanded this research during a stay at the University of South Florida in Tampa. Since March 2026, I have been a postdoc at the Human-centered Information Systems Engineering (HISE) group, Department of Informatics, University of Zurich (UZH).</p>
+    </section>
+
+    <section id="contact">
+      <h2 class="eyebrow">Contact</h2>
+      <p class="prose">Contact me to discuss joint interests or projects! &mdash; <a href="mailto:info@lucasmemmert.com">info [at] lucasmemmert.com</a></p>
+    </section>
+
+  </div>
+</div>
+
+<footer class="site">
+  <p><strong>Impressum</strong> &middot; Lucas Memmert, Vogt-K&ouml;lln-Stra&szlig;e 30, 22527 Hamburg &middot; <a href="mailto:info@lucasmemmert.com">info@lucasmemmert.com</a></p>
+  <p>Copyright &copy; 2026 lucasmemmert.com</p>
+</footer>
+
+</div>
+</body>
+</html>
